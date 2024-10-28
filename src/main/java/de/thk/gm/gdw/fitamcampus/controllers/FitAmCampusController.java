@@ -14,6 +14,7 @@ import java.util.UUID;
 
 @Controller
 public class FitAmCampusController {
+    @Autowired
     private FitAmCampusService fitAmCampusService;
 
     @GetMapping("/sporttreffen")
