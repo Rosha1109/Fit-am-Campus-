@@ -1,13 +1,17 @@
-package de.thk.gm.gdw.fitamcampus.controllers;
+package de.thk.gm.gdw.fitamcampus.controllers.application;
 
+import de.thk.gm.gdw.fitamcampus.usecases.FitAmCampusInterface;
+import de.thk.gm.gdw.fitamcampus.controllers.domain.SportTreffen;
+import de.thk.gm.gdw.fitamcampus.controllers.domain.SportTreffenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.UUID;
 @Service
-public class FitAmCampusService implements FitAmCampusInterface{
+public class FitAmCampusService implements FitAmCampusInterface {
     @Autowired
     private SportTreffenRepository sportTreffenRepository;
     @Override
@@ -22,14 +26,15 @@ public class FitAmCampusService implements FitAmCampusInterface{
     }
 
     @Override
-    public String getAllSportTreffen() {
-        return sportTreffenRepository.findAll().toString();
+    public List<SportTreffen> getAllSportTreffen() {
+        List<SportTreffen> liste = (List<SportTreffen>) sportTreffenRepository.findAll();
+        return liste;
     }
 
     @Override
-    public String getSportTreffenById(UUID id) {
+    public SportTreffen getSportTreffenById(UUID id) {
         SportTreffen sportTreffen = sportTreffenRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Sport Treffen Not Found"));
-        return sportTreffen.toString();
+        return sportTreffen;
     }
 
     @Override

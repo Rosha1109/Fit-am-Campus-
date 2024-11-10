@@ -1,14 +1,13 @@
-package de.thk.gm.gdw.fitamcampus.controllers;
+package de.thk.gm.gdw.fitamcampus.controllers.domain;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -25,6 +24,9 @@ public class SportTreffen {
    // private DrinneOderDraussen drinneOderDraussen = DrinneOderDraussen.OUTDOOR;
     private String description;
 
+   // @OneToMany
+   @OneToMany(mappedBy = "sportTreffen", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Kommentare> comments = new ArrayList<>();
     @Override
     public String toString() {
         return "SportTreffen [id=" + id + ", name=" + name + ", ort=" + ort;

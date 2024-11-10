@@ -1,4 +1,4 @@
-package de.thk.gm.gdw.fitamcampus.controllers;
+package de.thk.gm.gdw.fitamcampus.controllers.domain;
 
 import org.springframework.data.repository.CrudRepository;
 
