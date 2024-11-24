@@ -24,7 +24,7 @@ public class SportTreffen {
    // private DrinneOderDraussen drinneOderDraussen = DrinneOderDraussen.OUTDOOR;
     private String description;
 
-   // @OneToMany
+
    @OneToMany(mappedBy = "sportTreffen", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Kommentare> comments = new ArrayList<>();
     @Override

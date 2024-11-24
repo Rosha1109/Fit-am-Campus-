@@ -41,13 +41,11 @@ public class KommentareService implements KommentarInterface {
     }
 
     @Override
-    public List<Kommentare> getComments(UUID sportTreffenID) {
-        SportTreffen sportTreffen = sportTreffenRepository.findById(sportTreffenID).orElseThrow(() -> new EntityNotFoundException("Kommentar not found"));
-        if(sportTreffen != null){
-            return sportTreffen.getComments();
-        }else{
-            throw new IllegalArgumentException("SportTreffen is null");
-        }
+    public Kommentare getComment(UUID kommentarId) {
+        return kommentareRepository.findById(kommentarId).orElseThrow(() -> new EntityNotFoundException("Kommentare not found"));
+    }
+    public List<Kommentare> getAllComments() {
+        return (List<Kommentare>) kommentareRepository.findAll();
     }
 
     @Override

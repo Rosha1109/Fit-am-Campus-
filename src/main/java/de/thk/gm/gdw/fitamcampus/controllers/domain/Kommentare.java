@@ -14,6 +14,6 @@ public class Kommentare {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID kommentarId;
     private String content;
-    @ManyToOne(fetch = FetchType.LAZY)
+   @ManyToOne(fetch = FetchType.LAZY)
     private SportTreffen sportTreffen;
 }

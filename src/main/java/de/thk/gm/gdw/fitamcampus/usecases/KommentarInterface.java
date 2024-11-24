@@ -8,6 +8,6 @@ import java.util.UUID;
 public interface KommentarInterface {
     void addComment(UUID sportTreffenID,String comment);
     void deleteComment(UUID commentId);
-    List<Kommentare> getComments(UUID sportTreffenID);
+    Kommentare getComment(UUID sportTreffenID);
     void updateComment(UUID sportTreffenID,UUID kommentarId,String comment);
 }

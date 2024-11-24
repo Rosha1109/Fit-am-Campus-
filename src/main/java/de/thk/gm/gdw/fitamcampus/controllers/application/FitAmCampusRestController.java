@@ -4,19 +4,20 @@ package de.thk.gm.gdw.fitamcampus.controllers.application;
 import de.thk.gm.gdw.fitamcampus.controllers.domain.SportTreffen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@Controller
-public class FitAmCampusController {
+@RestController
+@RequestMapping( produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+public class FitAmCampusRestController {
     @Autowired
     private FitAmCampusService fitAmCampusService;
 
     @GetMapping("/sporttreffen")
-    @ResponseBody
     public List<SportTreffen> getAllSportTreffen() {
         return fitAmCampusService.getAllSportTreffen();
     }
@@ -27,7 +28,6 @@ public class FitAmCampusController {
     }
 
     @PostMapping("/sporttreffen")
-    @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     public void saveSportTreffen(String name,
                                  String ort,

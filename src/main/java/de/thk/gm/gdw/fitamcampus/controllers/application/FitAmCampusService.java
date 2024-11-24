@@ -46,7 +46,7 @@ public class FitAmCampusService implements FitAmCampusInterface {
 
     @Override
     public void deleteSportTreffen(UUID id) {
-        SportTreffen sportTreffen = sportTreffenRepository.findById(id).orElseThrow(null);
+        SportTreffen sportTreffen = sportTreffenRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Sport Treffen Not Found"));
         sportTreffenRepository.delete(sportTreffen);
     }
 }
