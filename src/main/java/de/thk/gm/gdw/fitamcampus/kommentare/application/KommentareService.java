@@ -1,9 +1,9 @@
-package de.thk.gm.gdw.fitamcampus.controllers.application;
+package de.thk.gm.gdw.fitamcampus.kommentare.application;
 
-import de.thk.gm.gdw.fitamcampus.controllers.domain.Kommentare;
-import de.thk.gm.gdw.fitamcampus.controllers.domain.KommentareRepository;
-import de.thk.gm.gdw.fitamcampus.controllers.domain.SportTreffen;
-import de.thk.gm.gdw.fitamcampus.controllers.domain.SportTreffenRepository;
+import de.thk.gm.gdw.fitamcampus.kommentare.domain.Kommentare;
+import de.thk.gm.gdw.fitamcampus.kommentare.domain.KommentareRepository;
+import de.thk.gm.gdw.fitamcampus.sporttreffen.domain.SportTreffen;
+import de.thk.gm.gdw.fitamcampus.sporttreffen.domain.SportTreffenRepository;
 import de.thk.gm.gdw.fitamcampus.usecases.KommentarInterface;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,7 @@ public class KommentareService implements KommentarInterface {
 
     @Override
     public void addComment(UUID sportTreffenID, String comment) {
+
                 SportTreffen sportTreffen = sportTreffenRepository.findById(sportTreffenID).orElseThrow(() -> new EntityNotFoundException("Kommentar not found"));
         Kommentare kommentare = new Kommentare();
         if(sportTreffen != null) {

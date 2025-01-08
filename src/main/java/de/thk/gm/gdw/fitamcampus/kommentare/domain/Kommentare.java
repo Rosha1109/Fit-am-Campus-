@@ -1,5 +1,6 @@
-package de.thk.gm.gdw.fitamcampus.controllers.domain;
+package de.thk.gm.gdw.fitamcampus.kommentare.domain;
 
+import de.thk.gm.gdw.fitamcampus.sporttreffen.domain.SportTreffen;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

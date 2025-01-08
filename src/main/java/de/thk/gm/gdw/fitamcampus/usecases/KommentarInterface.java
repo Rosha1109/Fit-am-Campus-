@@ -1,8 +1,7 @@
 package de.thk.gm.gdw.fitamcampus.usecases;
 
-import de.thk.gm.gdw.fitamcampus.controllers.domain.Kommentare;
+import de.thk.gm.gdw.fitamcampus.kommentare.domain.Kommentare;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface KommentarInterface {

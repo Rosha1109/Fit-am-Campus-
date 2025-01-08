@@ -1,6 +1,8 @@
-package de.thk.gm.gdw.fitamcampus.controllers.domain;
+package de.thk.gm.gdw.fitamcampus.sporttreffen.domain;
 
 
+import de.thk.gm.gdw.fitamcampus.kommentare.domain.Kommentare;
+//import de.thk.gm.gdw.fitamcampus.user.domain.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +25,7 @@ public class SportTreffen {
     private String sportArt;
    // private DrinneOderDraussen drinneOderDraussen = DrinneOderDraussen.OUTDOOR;
     private String description;
+
 
 
    @OneToMany(mappedBy = "sportTreffen", cascade = CascadeType.REMOVE, orphanRemoval = true)

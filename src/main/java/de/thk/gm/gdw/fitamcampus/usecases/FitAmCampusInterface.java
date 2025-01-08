@@ -1,6 +1,6 @@
 package de.thk.gm.gdw.fitamcampus.usecases;
 
-import de.thk.gm.gdw.fitamcampus.controllers.domain.SportTreffen;
+import de.thk.gm.gdw.fitamcampus.sporttreffen.domain.SportTreffen;
 
 import java.util.List;
 import java.util.UUID;

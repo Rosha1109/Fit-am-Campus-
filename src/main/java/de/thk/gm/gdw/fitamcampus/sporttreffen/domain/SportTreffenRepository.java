@@ -1,4 +1,4 @@
-package de.thk.gm.gdw.fitamcampus.controllers.domain;
+package de.thk.gm.gdw.fitamcampus.sporttreffen.domain;
 
 import org.springframework.data.repository.CrudRepository;
 
