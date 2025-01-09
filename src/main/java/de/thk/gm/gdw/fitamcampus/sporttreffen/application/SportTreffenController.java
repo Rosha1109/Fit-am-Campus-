@@ -2,6 +2,7 @@ package de.thk.gm.gdw.fitamcampus.sporttreffen.application;
 
 import de.thk.gm.gdw.fitamcampus.sporttreffen.domain.SportTreffen;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ public class SportTreffenController {
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public String saveSportTreffen(String name, String ort, String datum,String sportArt, String description){
     sportTreffenRestController.saveSportTreffen(name,ort,datum,sportArt,description);
     return "redirect:/sportTreffen";
