@@ -23,4 +23,6 @@
         <input type="hidden" name="_method" value="DELETE"/>
         <button>Delete Sporttreffen</button>
     </form>
+    <iframe src="${mapUrl}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
 </@base.layout>

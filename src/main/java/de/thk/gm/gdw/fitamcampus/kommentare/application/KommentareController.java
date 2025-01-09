@@ -1,6 +1,8 @@
 package de.thk.gm.gdw.fitamcampus.kommentare.application;
 
 
+import de.thk.gm.gdw.fitamcampus.sporttreffen.application.SportTreffenService;
+import de.thk.gm.gdw.fitamcampus.sporttreffen.domain.SportTreffenRepository;
 import de.thk.gm.gdw.fitamcampus.weather.application.WeatherRestController;
 import de.thk.gm.gdw.fitamcampus.kommentare.domain.Kommentare;
 import de.thk.gm.gdw.fitamcampus.sporttreffen.domain.SportTreffen;
@@ -24,6 +26,8 @@ public class KommentareController {
     private SportTreffenRestController sportTreffenRestController;
     @Autowired
     private WeatherRestController weatherRestController;
+    @Autowired
+    private SportTreffenRepository sportTreffenRepository;
 
     @GetMapping("/kommentare")
     public String showKommentare(@PathVariable UUID sportTreffenId, Model model) throws IOException, InterruptedException {
@@ -31,9 +35,11 @@ public class KommentareController {
         model.addAttribute("kommentare",kommentare);
         SportTreffen sportTreffen= sportTreffenRestController.getSportTreffenById(sportTreffenId);
         model.addAttribute("sportTreffen",sportTreffen);
-        Weather weather = weatherRestController.getWeatherService();
+        Weather weather = weatherRestController.getWeatherService(sportTreffen.getOrt());
         model.addAttribute("weather", weather);
 
+        String mapUrl = weatherRestController.getMapUrl(sportTreffen.getOrt());
+        model.addAttribute("mapUrl", mapUrl);
 
         return  "/kommentare/showKommentare";
     }
@@ -61,31 +67,3 @@ public class KommentareController {
         return "redirect:/sportTreffen/"+sportTreffenId+"/kommentare";
     }
 }
-/*
-package de.thk.gm.gdw.fitamcampus.controllers.application;
-
-import de.thk.gm.gdw.fitamcampus.weather.domain.Weather;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.io.IOException;
-
-@Controller
-@RequestMapping("/sportTreffen/{sportTreffenId}")
-public class WeatherController {
-
-    @Autowired
-    private WeatherService weatherService;
-    @GetMapping("/kommentare")
-    public String showWeather(@PathVariable int sportTreffenId, Model model) throws IOException, InterruptedException {
-        Weather weather = weatherService.getWeather();
-        model.addAttribute("weather", weather);
-        return "kommentare/showKommentare";
-    }
-}
-
- */

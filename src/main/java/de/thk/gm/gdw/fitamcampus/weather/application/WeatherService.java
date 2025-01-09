@@ -1,5 +1,6 @@
 package de.thk.gm.gdw.fitamcampus.weather.application;
 
+import de.thk.gm.gdw.fitamcampus.weather.domain.Koordinaten;
 import de.thk.gm.gdw.fitamcampus.weather.domain.Weather;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -12,12 +13,12 @@ import java.net.http.HttpResponse;
 
 @Service
 public class WeatherService {
-
-    public Weather getWeather() throws IOException, InterruptedException {
+    public Weather getWeather(String ort) throws IOException, InterruptedException {
+        Koordinaten koordinaten = getGeoCode(ort);
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,weather_code"))
+                .uri(URI.create("https://api.open-meteo.com/v1/forecast?latitude=" + koordinaten.getLatitude().toString() + "&longitude=" + koordinaten.getLongitude().toString() + "&current=temperature_2m,weather_code"))
                 .build();
         HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         JSONObject json = new JSONObject(httpResponse.body()).getJSONObject("current");
@@ -31,6 +32,39 @@ public class WeatherService {
 
 
     }
+    public String getMap(String ort) throws IOException, InterruptedException {
+        // Koordinaten des Orts abrufen
+        Koordinaten koordinaten = getGeoCode(ort);
+
+        // Generiere die OpenStreetMap-URL mit den Koordinaten
+        String mapUrl = "https://www.openstreetmap.org/?mlat="
+                + koordinaten.getLatitude()
+                + "&mlon="
+                + koordinaten.getLongitude()
+                + "&zoom=15";
+        String google="https://www.openstreetmap.org/search?query=madrid#map=11/40.4783/-3.7038";
+        return google;
+    }
+
+
+
+    public Koordinaten getGeoCode(String ort) throws IOException, InterruptedException {
+        Koordinaten geoCode = new Koordinaten();
+        String stadt="https://geocoding-api.open-meteo.com/v1/search?name="+ ort +"&count=1&language=de&format=json";
+        HttpClient httpClient=HttpClient.newBuilder().build();
+        HttpRequest httpRequest =
+                HttpRequest.newBuilder().GET().uri(URI.create(stadt)).build();
+        HttpResponse<String> httpResponse=httpClient.send(httpRequest,HttpResponse.BodyHandlers.ofString());
+        JSONObject json = new JSONObject(httpResponse.body());
+        geoCode.setLatitude(json.getJSONArray("results").getJSONObject(0).getFloat("latitude"));
+        geoCode.setLongitude(json.getJSONArray("results").getJSONObject(0).getFloat("longitude"));
+        return geoCode;
+
+    }
+
+
+
+
     private String weatherCodeToString(int weatherCode) {
         switch (weatherCode) {
             case 0:
