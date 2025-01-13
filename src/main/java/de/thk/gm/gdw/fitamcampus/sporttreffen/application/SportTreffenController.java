@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,8 +27,8 @@ public class SportTreffenController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public String saveSportTreffen(String name, String ort, String datum,String sportArt, String description){
-    sportTreffenRestController.saveSportTreffen(name,ort,datum,sportArt,description);
+    public String saveSportTreffen(String name, String ort, LocalDate datum, String sportArt, String description,SportTreffen.DrinneOderDraussen drinneOderDraussen){
+    sportTreffenRestController.saveSportTreffen(name,ort,datum,sportArt,description,drinneOderDraussen);
     return "redirect:/sportTreffen";
     }
     @GetMapping("/{sportTreffenId}/edit")

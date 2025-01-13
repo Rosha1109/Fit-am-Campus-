@@ -38,8 +38,8 @@ public class CommentsRestController {
     }
     @GetMapping("sportTreffen/{sporttreffenId}/kommentare")
     @ResponseStatus(HttpStatus.OK)
-    public List<Kommentare> getAllComments(){
-        return kommentareService.getAllComments();
+    public List<Kommentare> getCommentsById(UUID sportTreffenId){
+        return kommentareService.getCommmentsById(sportTreffenId);
     }
 
 

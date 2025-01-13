@@ -9,6 +9,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,8 +46,16 @@ public class KommentareService implements KommentarInterface {
     public Kommentare getComment(UUID kommentarId) {
         return kommentareRepository.findById(kommentarId).orElseThrow(() -> new EntityNotFoundException("Kommentare not found"));
     }
-    public List<Kommentare> getAllComments() {
-        return (List<Kommentare>) kommentareRepository.findAll();
+    public List<Kommentare> getCommmentsById(UUID sportTreffenId) {
+        List<Kommentare> liste= (List<Kommentare>) kommentareRepository.findAll();
+        List<Kommentare> newListe = new ArrayList<Kommentare>();
+        for(Kommentare temp:liste){
+            if(temp.getSportTreffen().getId().equals(sportTreffenId)){
+                newListe.add(temp);
+            }
+
+        }
+        return newListe;
     }
 
     @Override

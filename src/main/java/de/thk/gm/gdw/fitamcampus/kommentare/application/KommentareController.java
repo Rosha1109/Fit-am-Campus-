@@ -1,7 +1,6 @@
 package de.thk.gm.gdw.fitamcampus.kommentare.application;
 
 
-import de.thk.gm.gdw.fitamcampus.sporttreffen.application.SportTreffenService;
 import de.thk.gm.gdw.fitamcampus.sporttreffen.domain.SportTreffenRepository;
 import de.thk.gm.gdw.fitamcampus.weather.application.WeatherRestController;
 import de.thk.gm.gdw.fitamcampus.kommentare.domain.Kommentare;
@@ -31,7 +30,7 @@ public class KommentareController {
 
     @GetMapping("/kommentare")
     public String showKommentare(@PathVariable UUID sportTreffenId, Model model) throws IOException, InterruptedException {
-        List<Kommentare> kommentare = commentsRestController.getAllComments();
+        List<Kommentare> kommentare = commentsRestController.getCommentsById(sportTreffenId);
         model.addAttribute("kommentare",kommentare);
         SportTreffen sportTreffen= sportTreffenRestController.getSportTreffenById(sportTreffenId);
         model.addAttribute("sportTreffen",sportTreffen);

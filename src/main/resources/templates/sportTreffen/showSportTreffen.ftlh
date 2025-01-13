@@ -8,9 +8,13 @@
     <form action="/sportTreffen" method="post">
         <input placeholder="NameXYZ" name="name" type="text">
         <input placeholder="OrtXYZ" name="ort" type="text">
-        <input placeholder="Datum" name="datum" type="text">
+        <input placeholder="Datum" name="datum" type="date">
         <input placeholder="sportartXYZ" name="sportArt" type="text">
         <input placeholder="BeschreibungXYZ" name="description" type="text">
+        <select name="Drinne Oder draußen?">
+            <option value="DRINNE">INDOOR</option>
+            <option value="Draußen">OUTDOOR</option>
+        </select>
 <br>
         <button type="submit"> Create Sporttreffen</button>
     </form>

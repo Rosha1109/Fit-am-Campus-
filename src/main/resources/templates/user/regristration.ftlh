@@ -8,6 +8,6 @@
         <br>
         <input placeholder="Enter Email" name="email" type="email" required>
         <br>
-        <button  type="submit">Register</button>
+        <button type="submit">Register</button>
     </form>
 </@base.layout>

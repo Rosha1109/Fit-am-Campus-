@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,11 +32,12 @@ public class SportTreffenRestController {
     @ResponseStatus(HttpStatus.CREATED)
     public void saveSportTreffen(String name,
                                  String ort,
-                                 String datum,
+                                 LocalDate datum,
                                  String sportArt,
-                                 String description)
+                                 String description,
+    SportTreffen.DrinneOderDraussen drinneOderDraussen)
     {
-       fitAmCampusService.saveSportTreffen(name, ort, datum, sportArt, description);
+       fitAmCampusService.saveSportTreffen(name,ort,datum,drinneOderDraussen,sportArt,description);
     }
     @PutMapping("sporttreffen/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

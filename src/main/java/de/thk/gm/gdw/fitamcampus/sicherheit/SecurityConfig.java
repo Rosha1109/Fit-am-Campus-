@@ -32,36 +32,23 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/h2-console/**", "/register").permitAll() // Zugriff auf H2-Konsole erlauben
+                        .requestMatchers("/h2-console/**", "/register","/").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form.defaultSuccessUrl("/sportTreffen"))
-                .logout(form -> form.logoutSuccessUrl("/login"))
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 
 
         return http.build();
 
-          /*  http
-                    .csrf(csrf -> csrf.disable())
-                    .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
-                    .authorizeHttpRequests(auth -> auth
-                            .anyRequest().permitAll()) // Alle Anfragen erlauben
-                    .formLogin(form -> form.defaultSuccessUrl("/sportTreffen"))
-                    .logout(form -> form.logoutSuccessUrl("/login"))
-                    .httpBasic(Customizer.withDefaults())
-                    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
-
-            return http.build();*/
-
 
 
     }
 
-    @Bean
-    WebSecurityCustomizer webSecurityCustomizer() throws Exception {
-        return (web -> web.ignoring().requestMatchers("/", "/register", "/h2-console/**"));
-    }
+//    @Bean
+//    WebSecurityCustomizer webSecurityCustomizer() throws Exception {
+//        return (web -> web.ignoring().requestMatchers("/", "/register", "/h2-console/**"));
+//    }
 
     @Bean
     public AuthenticationProvider authProvider() {
